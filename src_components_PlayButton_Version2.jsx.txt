@@ -1,0 +1,18 @@
+import React from "react";
+
+export function PlayButton({ text }) {
+  function play() {
+    if ("speechSynthesis" in window) {
+      const utter = new window.SpeechSynthesisUtterance(text);
+      utter.lang = "ar-SA";
+      window.speechSynthesis.speak(utter);
+    } else {
+      alert("Speech synthesis is not supported in your browser.");
+    }
+  }
+  return (
+    <button onClick={play} style={{ marginLeft: 8 }} aria-label={`Play pronunciation for ${text}`}>
+      🔊 Listen
+    </button>
+  );
+}
